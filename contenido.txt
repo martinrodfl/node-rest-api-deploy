@@ -1,0 +1,38 @@
+Creamos desde cero y paso a paso con Express una REST API.
+Explicamos qué es y cómo funciona. También veremos las diferencias entre POST, PUT y PATCH.
+¡Y vas a entender CORS de una vez por todas! Lo explicamos y solucionamos de diferentes maneras.
+
+REST -> Arquitectura de software
+				2000 - Roy Fielding
+				Simplicidad, escalabilidad, portabilidad, visibilidad, fiabilidad, facil de modificar
+				PRINCIPIOS:
+									Todo es un recurso -> cada recurso se identifica una url
+									Verbos http -> definen las operaciones que se puedden realizar con los recurso(CRUD)
+									Representaciones -> (json, xml, html, etc) -> El cliente deberia poder decidir la representacion del recurso
+									Stateless -> el servidor no debe mantener ningun estado para procesar la solicitud, no debe guardar informacion
+									Interfaz uniforme -> 
+									Separacion de conceptos -> PErmitir que cliente y servidor evolucionen de forma separada
+
+IDEMPOTENCIA : Propiedad de realizar una accon determinada varias veces y aun asi 
+							 conseguir siempre el mismo resultado que se obtendria al hacerlo una vez.
+
+
+POST: Crear un nuevo elemento/recurso en el servidor/db. NO ES IDEMPOTENTE
+			/movies
+
+PUT: Actualizar totalmente un elemento ya existente o crearlo si no existe. ES IDEMPOTENTE
+		 /movies/123-123-123
+
+PATCH: Actualizar parcialmente un elemento/recurso.
+			 /movies/123-123-123
+
+CORS: es un mecanismo que restringe que un recurso sea acompartido en eu una pagina web
+			para evitar que un origen/dominio fuera de otro dominio desde que se sirvio ese recurso
+			pueda acceder
+
+			La web le dice al servidor tu url es localhost:1234 y la web que tengo es localhos:8080, loconoces?
+			Para que se conozcan hay que poner en la solicitud en el servidor el header('Access-Control-Allow-Origin', 'http://localhost:8080'),
+			con la web que va solicitar el recurso o '*' para que cualquier web pueda acceder, que no es lo mas seguro
+
+MIDDLEWARE CORS: npm install cors -E
+
